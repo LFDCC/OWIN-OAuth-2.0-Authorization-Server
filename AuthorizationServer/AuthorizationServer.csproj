@@ -152,9 +152,9 @@
       <Project>{0c35c99a-514b-4a28-95e0-a591315afe0d}</Project>
       <Name>Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CustomOAuth\CustomOAuth.csproj">
-      <Project>{9d3a2b89-9f50-4ea1-ab2e-8777024e6702}</Project>
-      <Name>CustomOAuth</Name>
+    <ProjectReference Include="..\Microsoft.Owin.Security.OAuth2\Microsoft.Owin.Security.OAuth2.csproj">
+      <Project>{73257473-f939-4633-a518-38e0f7837e2d}</Project>
+      <Name>Microsoft.Owin.Security.OAuth2</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

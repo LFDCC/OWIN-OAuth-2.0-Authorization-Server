@@ -4,12 +4,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+
 using Constants;
-using Custom.OAuth;
+
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Infrastructure;
+using Microsoft.Owin.Security.OAuth2;
+
 using Owin;
 
 namespace AuthorizationServer
@@ -167,8 +170,8 @@ namespace AuthorizationServer
 
         private void CreateRefreshToken(AuthenticationTokenCreateContext context)
         {
-            //context.Ticket.Properties.IssuedUtc = DateTime.Now;
-            //context.Ticket.Properties.ExpiresUtc = DateTime.Now.AddSeconds(20);
+            context.Ticket.Properties.IssuedUtc = DateTime.Now;
+            context.Ticket.Properties.ExpiresUtc = DateTime.Now.AddMonths(1);
             context.SetToken(context.SerializeTicket());
         }
 

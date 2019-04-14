@@ -1,5 +1,7 @@
-﻿using Custom.OAuth;
+﻿using Microsoft.Owin.Security.OAuth2;
+
 using Owin;
+using ResourceServer.Provider;
 
 namespace ResourceServer
 {
@@ -7,7 +9,9 @@ namespace ResourceServer
     {
         public void ConfigureAuth(IAppBuilder app)
         {
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions() {                
+                 AccessTokenProvider=new AccessTokenProvider()
+            });
         }
     }
 }
