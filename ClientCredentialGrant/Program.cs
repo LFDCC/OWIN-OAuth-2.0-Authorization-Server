@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Http;
+
 using Constants;
+
 using DotNetOpenAuth.OAuth2;
 
 namespace ClientCredentialGrant

@@ -2,8 +2,6 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Security.Claims;
-using Microsoft.Owin;
-using Microsoft.Owin.Security;
 
 namespace Microsoft.Owin.Security.OAuth2
 {

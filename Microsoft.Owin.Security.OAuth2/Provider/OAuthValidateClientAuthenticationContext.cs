@@ -3,7 +3,6 @@
 
 using System;
 using System.Text;
-using Microsoft.Owin;
 
 namespace Microsoft.Owin.Security.OAuth2
 {

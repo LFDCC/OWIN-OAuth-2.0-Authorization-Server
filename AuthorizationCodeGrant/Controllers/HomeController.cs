@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using System.Web.Mvc;
+
 using Constants;
+
 using DotNetOpenAuth.OAuth2;
 
 namespace AuthorizationCodeGrant.Controllers

@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Owin;
 
 namespace Microsoft.Owin.Security.OAuth2.Messages
 {

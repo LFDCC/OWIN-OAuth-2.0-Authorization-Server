@@ -171,7 +171,7 @@ namespace AuthorizationServer
         private void CreateRefreshToken(AuthenticationTokenCreateContext context)
         {
             context.Ticket.Properties.IssuedUtc = DateTime.Now;
-            context.Ticket.Properties.ExpiresUtc = DateTime.Now.AddMonths(1);
+            context.Ticket.Properties.ExpiresUtc = DateTime.Now.AddSeconds(10);
             context.SetToken(context.SerializeTicket());
         }
 

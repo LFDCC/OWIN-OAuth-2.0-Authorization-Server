@@ -4,9 +4,8 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+
 using Microsoft.Owin.Security.OAuth2.Messages;
-using Microsoft.Owin;
-using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Provider;
 
 namespace Microsoft.Owin.Security.OAuth2
