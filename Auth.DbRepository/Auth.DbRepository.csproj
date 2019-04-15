@@ -46,8 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContext.cs" />
+    <Compile Include="DbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleClientExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

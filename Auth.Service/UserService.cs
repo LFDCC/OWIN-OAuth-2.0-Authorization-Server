@@ -5,7 +5,7 @@ using Auth.Service.Interface;
 
 namespace Auth.Service
 {
-    public class UserService : DbContext<UserEntity>, IUserService
+    public class UserService : DbContext, IUserService
     {
         /// <summary>
         /// 判断用户是否存在
@@ -14,8 +14,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<bool> ExistAsync(int Id)
         {
-            await UserDb.GetListAsync();
-            return await UserDb.AsQueryable().AnyAsync(t => t.Id == Id);
+            return await UserDb.IsAnyAsync(t => t.Id == Id);
         }
 
         /// <summary>
@@ -25,7 +24,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<bool> ExistAsync(string UserName)
         {
-            return await UserDb.AsQueryable().AnyAsync(t => t.UserName == UserName);
+            return await UserDb.IsAnyAsync(t => t.UserName == UserName);
         }
 
         /// <summary>
@@ -35,7 +34,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<UserEntity> GetUserAsync(int Id)
         {
-            return await UserDb.AsQueryable().SingleAsync(t => t.Id == Id);
+            return await UserDb.SingleAsync(t => t.Id == Id);
         }
 
         /// <summary>
@@ -45,7 +44,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<UserEntity> GetUserAsync(string UserName)
         {
-            return await UserDb.AsQueryable().SingleAsync(t => t.UserName == UserName);
+            return await UserDb.SingleAsync(t => t.UserName == UserName);
         }
     }
 }
