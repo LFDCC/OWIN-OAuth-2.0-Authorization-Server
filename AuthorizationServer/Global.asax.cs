@@ -1,4 +1,5 @@
 ﻿using System.Web.Routing;
+using Auth.Infrastructure.Ioc;
 
 namespace AuthorizationServer
 {
@@ -7,6 +8,7 @@ namespace AuthorizationServer
         protected void Application_Start()
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            AutoFacMvcConfig.RegisterContainer();
         }
     }
 }

@@ -33,12 +33,12 @@ namespace ResourceOwnerPasswordCredentialGrant
                 AuthorizationEndpoint = new Uri(authorizationServerUri, Paths.AuthorizePath),
                 TokenEndpoint = new Uri(authorizationServerUri, Paths.TokenPath)
             };
-            _webServerClient = new WebServerClient(authorizationServer, Clients.Client1.Id, Clients.Client1.Secret);
+            _webServerClient = new WebServerClient(authorizationServer, "5", "6");
         }
 
         private static void RequestToken()
         {
-            var state = _webServerClient.ExchangeUserCredentialForToken("User Name", "Password", scopes: new string[] { "bio" });
+            var state = _webServerClient.ExchangeUserCredentialForToken("1", "000000", scopes: new string[] { "bio" });
             _accessToken = state.AccessToken;
         }
 

@@ -59,8 +59,13 @@
       <Project>{2751abdb-7005-49be-aef4-e83a39252fb0}</Project>
       <Name>Auth.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj">
+      <Project>{BB65BD91-78ED-458B-9C7E-FAD1A311CEDC}</Project>
+      <Name>Auth.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

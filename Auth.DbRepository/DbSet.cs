@@ -1,28 +1,4 @@
-﻿/**
-
-*┌──────────────────────────────────────────────────────────────┐
-
-*│　描   述：拉风的CC                                                    
-
-*│　作   者：拉风的CC                               
-
-*│　版   本：1.0                                                 
-
-*│　创建时间：2019/4/15 20:41:13                             
-
-*└──────────────────────────────────────────────────────────────┘
-
-*┌──────────────────────────────────────────────────────────────┐
-
-*│　命名空间: Auth.DbRepository                                   
-
-*│　类   名：DbSet                                      
-
-*└──────────────────────────────────────────────────────────────┘
-
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -34,8 +10,8 @@ namespace Auth.DbRepository
     {
         public DbSet(SqlSugarClient context) : base(context)
         {
-
         }
+
         /// <summary>
         /// 根据主键获取对象
         /// </summary>
@@ -45,6 +21,7 @@ namespace Auth.DbRepository
         {
             return Context.Queryable<T>().InSingle(id);
         }
+
         /// <summary>
         /// 获取列表
         /// </summary>
@@ -53,6 +30,7 @@ namespace Auth.DbRepository
         {
             return Context.Queryable<T>().ToListAsync();
         }
+
         /// <summary>
         /// 获取列表
         /// </summary>
@@ -62,6 +40,7 @@ namespace Auth.DbRepository
         {
             return Context.Queryable<T>().Where(whereExpression).ToListAsync();
         }
+
         /// <summary>
         /// 获取唯一一条数据 多条抛异常
         /// </summary>
@@ -71,6 +50,7 @@ namespace Auth.DbRepository
         {
             return Context.Queryable<T>().SingleAsync(whereExpression);
         }
+
         /// <summary>
         /// 获取分页数据
         /// </summary>
@@ -82,6 +62,7 @@ namespace Auth.DbRepository
             Task<KeyValuePair<List<T>, int>> result = Context.Queryable<T>().Where(whereExpression).ToPageListAsync(page.PageIndex, page.PageSize, page.PageCount);
             return result;
         }
+
         /// <summary>
         /// 获取分页数据
         /// </summary>
@@ -91,7 +72,7 @@ namespace Auth.DbRepository
         /// <param name="orderByExpression">如果是Null则使用默认排序orderByType</param>
         /// <param name="orderByType">默认排序</param>
         /// <returns>Key：集合 Value：总页数</returns>
-        public Task<KeyValuePair<List<T>, int>> GetPageListAsync<T>(Expression<Func<T, bool>> whereExpression, PageModel page, Expression<Func<T, object>> orderByExpression = null, OrderByType orderByType = OrderByType.Asc)
+        public Task<KeyValuePair<List<T>, int>> GetPageListAsync(Expression<Func<T, bool>> whereExpression, PageModel page, Expression<Func<T, object>> orderByExpression = null, OrderByType orderByType = OrderByType.Asc)
         {
             Task<KeyValuePair<List<T>, int>> result = Context.Queryable<T>().OrderByIF(orderByExpression != null, orderByExpression, orderByType).Where(whereExpression).ToPageListAsync(page.PageIndex, page.PageSize, page.PageCount);
             return result;
@@ -108,6 +89,7 @@ namespace Auth.DbRepository
             Task<KeyValuePair<List<T>, int>> result = Context.Queryable<T>().Where(conditionalList).ToPageListAsync(page.PageIndex, page.PageSize, page.PageCount);
             return result;
         }
+
         /// <summary>
         /// 获取分页数据
         /// </summary>
@@ -121,6 +103,7 @@ namespace Auth.DbRepository
             Task<KeyValuePair<List<T>, int>> result = Context.Queryable<T>().OrderByIF(orderByExpression != null, orderByExpression, orderByType).Where(conditionalLis).ToPageListAsync(page.PageIndex, page.PageSize, page.PageCount);
             return result;
         }
+
         /// <summary>
         /// 是否存在
         /// </summary>
@@ -130,6 +113,7 @@ namespace Auth.DbRepository
         {
             return Context.Queryable<T>().AnyAsync(whereExpression);
         }
+
         /// <summary>
         /// 获取数量
         /// </summary>
@@ -137,9 +121,9 @@ namespace Auth.DbRepository
         /// <returns></returns>
         public Task<int> CountAsync(Expression<Func<T, bool>> whereExpression)
         {
-
             return Context.Queryable<T>().CountAsync(whereExpression);
         }
+
         /// <summary>
         /// 插入对象
         /// </summary>
@@ -149,6 +133,7 @@ namespace Auth.DbRepository
         {
             return Context.Insertable(insertObj).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 插入对象并返回自增列
         /// </summary>
@@ -158,6 +143,7 @@ namespace Auth.DbRepository
         {
             return Context.Insertable(insertObj).ExecuteReturnIdentityAsync();
         }
+
         /// <summary>
         /// 批量插入
         /// </summary>
@@ -167,6 +153,7 @@ namespace Auth.DbRepository
         {
             return Context.Insertable(insertObjs).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 批量插入
         /// </summary>
@@ -174,9 +161,9 @@ namespace Auth.DbRepository
         /// <returns></returns>
         public Task<int> InsertRangeAsync(List<T> insertObjs)
         {
-
             return Context.Insertable(insertObjs).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 更新对象
         /// </summary>
@@ -186,6 +173,7 @@ namespace Auth.DbRepository
         {
             return Context.Updateable(updateObj).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 批量更新
         /// </summary>
@@ -195,6 +183,7 @@ namespace Auth.DbRepository
         {
             return Context.Updateable(updateObj).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 批量更新
         /// </summary>
@@ -204,6 +193,7 @@ namespace Auth.DbRepository
         {
             return Context.Updateable(updateObj).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 更新指定列
         /// </summary>
@@ -215,6 +205,7 @@ namespace Auth.DbRepository
             return Context.Updateable<T>().UpdateColumns(columns).Where(whereExpression)
                 .ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 删除对象
         /// </summary>
@@ -224,6 +215,7 @@ namespace Auth.DbRepository
         {
             return Context.Deleteable<T>().Where(deleteObj).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 根据条件删除
         /// </summary>
@@ -233,6 +225,7 @@ namespace Auth.DbRepository
         {
             return Context.Deleteable<T>().Where(whereExpression).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 根据主键删除
         /// </summary>
@@ -242,6 +235,7 @@ namespace Auth.DbRepository
         {
             return Context.Deleteable<T>(id).ExecuteCommandAsync();
         }
+
         /// <summary>
         /// 根据主键批量删除
         /// </summary>

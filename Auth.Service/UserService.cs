@@ -27,6 +27,11 @@ namespace Auth.Service
             return await UserDb.IsAnyAsync(t => t.UserName == UserName);
         }
 
+        public async Task<bool> ExistAsync(string UserName, string Password)
+        {
+            return await UserDb.IsAnyAsync(t => t.UserName == UserName & t.Password == Password);
+        }
+
         /// <summary>
         /// 获取用户
         /// </summary>
@@ -45,6 +50,11 @@ namespace Auth.Service
         public async Task<UserEntity> GetUserAsync(string UserName)
         {
             return await UserDb.SingleAsync(t => t.UserName == UserName);
+        }
+
+        public async Task<UserEntity> GetUserAsync(string UserName, string Password)
+        {
+            return await UserDb.SingleAsync(t => t.UserName == UserName & t.Password == Password);
         }
     }
 }

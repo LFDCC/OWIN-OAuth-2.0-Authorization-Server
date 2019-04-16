@@ -77,6 +77,9 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -86,6 +89,9 @@
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.7\lib\net45\System.Web.Http.Owin.dll</HintPath>
@@ -117,13 +123,18 @@
   <ItemGroup>
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Filter\CustomAuthorized.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\HttpResult.cs" />
+    <Compile Include="Model\HttpStateCode.cs" />
+    <Compile Include="Model\JsonContentNegotiator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\AccessTokenProvider.cs" />
+    <Compile Include="Provider\QueryStringBearerProvider .cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +214,18 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Auth.Entities\Auth.Entities.csproj">
+      <Project>{2751ABDB-7005-49BE-AEF4-E83A39252FB0}</Project>
+      <Name>Auth.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj">
+      <Project>{BB65BD91-78ED-458B-9C7E-FAD1A311CEDC}</Project>
+      <Name>Auth.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Auth.Service\Auth.Service.csproj">
+      <Project>{C8DFCD0E-49B2-4F60-9143-D6279FAF4EB9}</Project>
+      <Name>Auth.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Microsoft.Owin.Security.OAuth2\Microsoft.Owin.Security.OAuth2.csproj">
       <Project>{73257473-f939-4633-a518-38e0f7837e2d}</Project>
       <Name>Microsoft.Owin.Security.OAuth2</Name>

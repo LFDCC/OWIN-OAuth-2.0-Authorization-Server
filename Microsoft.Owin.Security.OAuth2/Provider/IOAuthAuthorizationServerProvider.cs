@@ -30,7 +30,7 @@ namespace Microsoft.Owin.Security.OAuth2
         /// </summary>
         /// <param name="context">The context of the event carries information in and results out.</param>
         /// <returns>Task to enable asynchronous execution</returns>
-        Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context);
+        Task ValidateClientRedirectUriAsync(OAuthValidateClientRedirectUriContext context);
 
         /// <summary>
         /// Called to validate that the origin of the request is a registered "client_id", and that the correct credentials for that client are
@@ -42,7 +42,7 @@ namespace Microsoft.Owin.Security.OAuth2
         /// </summary>
         /// <param name="context">The context of the event carries information in and results out.</param>
         /// <returns>Task to enable asynchronous execution</returns>
-        Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context);
+        Task ValidateClientAuthenticationAsync(OAuthValidateClientAuthenticationContext context);
 
         /// <summary>
         /// Called for each request to the Authorize endpoint to determine if the request is valid and should continue.
@@ -104,7 +104,7 @@ namespace Microsoft.Owin.Security.OAuth2
         /// </summary>
         /// <param name="context">The context of the event carries information in and results out.</param>
         /// <returns>Task to enable asynchronous execution</returns>
-        Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context);
+        Task GrantResourceOwnerCredentialsAsync(OAuthGrantResourceOwnerCredentialsContext context);
 
         /// <summary>
         /// Called when a request to the Token endpoint arrives with a "grant_type" of "client_credentials". This occurs when a registered client

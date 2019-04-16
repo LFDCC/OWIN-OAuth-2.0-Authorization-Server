@@ -12,6 +12,7 @@ namespace ResourceServer
         {
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions()
             {
+                Provider = new QueryStringBearerProvider("token"),
                 AccessTokenProvider = new AccessTokenProvider()
             });
         }

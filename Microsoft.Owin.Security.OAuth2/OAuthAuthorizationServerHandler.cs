@@ -113,7 +113,7 @@ namespace Microsoft.Owin.Security.OAuth2
                 }
             }
 
-            await Options.Provider.ValidateClientRedirectUri(clientContext);
+            await Options.Provider.ValidateClientRedirectUriAsync(clientContext);
 
             if (!clientContext.IsValidated)
             {
@@ -322,7 +322,7 @@ namespace Microsoft.Owin.Security.OAuth2
                 Options,
                 form);
 
-            await Options.Provider.ValidateClientAuthentication(clientContext);
+            await Options.Provider.ValidateClientAuthenticationAsync(clientContext);
 
             if (!clientContext.IsValidated)
             {
@@ -568,7 +568,7 @@ namespace Microsoft.Owin.Security.OAuth2
 
             if (validatingContext.IsValidated)
             {
-                await Options.Provider.GrantResourceOwnerCredentials(grantContext);
+                await Options.Provider.GrantResourceOwnerCredentialsAsync(grantContext);
             }
 
             return ReturnOutcome(

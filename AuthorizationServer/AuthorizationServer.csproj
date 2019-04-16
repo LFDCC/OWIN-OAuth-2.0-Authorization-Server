@@ -41,12 +41,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.5.4.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
@@ -151,10 +145,25 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\AccessTokenProvider.cs" />
+    <Compile Include="Provider\AuthorizationCodeProvider.cs" />
     <Compile Include="Provider\AuthorizationServerProvider.cs" />
+    <Compile Include="Provider\RefreshTokenProvider.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Auth.Entities\Auth.Entities.csproj">
+      <Project>{2751abdb-7005-49be-aef4-e83a39252fb0}</Project>
+      <Name>Auth.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj">
+      <Project>{BB65BD91-78ED-458B-9C7E-FAD1A311CEDC}</Project>
+      <Name>Auth.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Auth.Service\Auth.Service.csproj">
+      <Project>{c8dfcd0e-49b2-4f60-9143-d6279faf4eb9}</Project>
+      <Name>Auth.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Constants\Constants.csproj">
       <Project>{0c35c99a-514b-4a28-95e0-a591315afe0d}</Project>
       <Name>Constants</Name>

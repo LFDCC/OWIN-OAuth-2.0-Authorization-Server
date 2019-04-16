@@ -16,6 +16,7 @@ namespace Auth.Service
         {
             return await ClientDb.IsAnyAsync(t => t.Id == ClientId);
         }
+
         /// <summary>
         /// 判断客户端是否存在
         /// </summary>
@@ -36,6 +37,7 @@ namespace Auth.Service
         {
             return await ClientDb.SingleAsync(t => t.Id == ClientId);
         }
+
         /// <summary>
         /// 获取客户端
         /// </summary>

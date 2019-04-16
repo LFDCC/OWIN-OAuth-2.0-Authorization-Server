@@ -197,7 +197,7 @@ namespace Microsoft.Owin.Security.OAuth2
         /// </summary>
         /// <param name="context">The context of the event carries information in and results out.</param>
         /// <returns>Task to enable asynchronous execution</returns>
-        public virtual Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
+        public virtual Task ValidateClientRedirectUriAsync(OAuthValidateClientRedirectUriContext context)
         {
             return OnValidateClientRedirectUri.Invoke(context);
         }
@@ -212,7 +212,7 @@ namespace Microsoft.Owin.Security.OAuth2
         /// </summary>
         /// <param name="context">The context of the event carries information in and results out.</param>
         /// <returns>Task to enable asynchronous execution</returns>
-        public virtual Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        public virtual Task ValidateClientAuthenticationAsync(OAuthValidateClientAuthenticationContext context)
         {
             return OnValidateClientAuthentication.Invoke(context);
         }
@@ -289,7 +289,7 @@ namespace Microsoft.Owin.Security.OAuth2
         /// </summary>
         /// <param name="context">The context of the event carries information in and results out.</param>
         /// <returns>Task to enable asynchronous execution</returns>
-        public virtual Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+        public virtual Task GrantResourceOwnerCredentialsAsync(OAuthGrantResourceOwnerCredentialsContext context)
         {
             return OnGrantResourceOwnerCredentials.Invoke(context);
         }

@@ -1,4 +1,7 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Formatting;
+using System.Web.Http;
+using System.Web.Http.Cors;
+using ResourceServer.Model;
 
 namespace ResourceServer
 {
@@ -6,7 +9,8 @@ namespace ResourceServer
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            //跨域配置
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -16,6 +20,9 @@ namespace ResourceServer
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var jsonFormatter = new JsonMediaTypeFormatter();
+            config.Services.Replace(typeof(IContentNegotiator), new JsonContentNegotiator(jsonFormatter));
         }
     }
 }
