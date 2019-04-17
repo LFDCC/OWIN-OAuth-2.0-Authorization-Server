@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Infrastructure", "Auth
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Dto", "Auth.Dto\Auth.Dto.csproj", "{42CB8920-6AF3-4712-94AB-E6E7108984E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{CE18943E-8282-4827-9AB4-39F0F52C8E49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{42CB8920-6AF3-4712-94AB-E6E7108984E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42CB8920-6AF3-4712-94AB-E6E7108984E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42CB8920-6AF3-4712-94AB-E6E7108984E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE18943E-8282-4827-9AB4-39F0F52C8E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE18943E-8282-4827-9AB4-39F0F52C8E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE18943E-8282-4827-9AB4-39F0F52C8E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE18943E-8282-4827-9AB4-39F0F52C8E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

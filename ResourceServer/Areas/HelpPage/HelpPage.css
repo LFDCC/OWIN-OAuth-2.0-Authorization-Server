@@ -132,3 +132,59 @@
     color: #0000EE;
     text-decoration: none;
 }
+#leftmenu {
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    width: 130px;
+    border-right: dashed 1px #D4D4D4;
+    overflow-y: scroll;
+    min-height: 300px;
+}
+
+    #leftmenu a {
+        display: block;
+        margin: 10px 10px;
+        color: #697eaf;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+.help-page {
+    padding: 0 20px;
+}
+
+.fill {
+    height: 50px;
+    width: 100%;
+}
+
+.content-wrapper h1 {
+    margin: 0 auto;
+    background: #697eaf;
+    color: #FFFFFF;
+    height: 50px;
+    line-height: 48px;
+    padding: 0 20px;
+    font-size: 20px;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    background: #425173;
+    left: 0;
+    bottom: 0;
+}
+
+    footer p {
+        padding: 10px 20px;
+        color: #adb6ca;
+        margin: 0;
+    }

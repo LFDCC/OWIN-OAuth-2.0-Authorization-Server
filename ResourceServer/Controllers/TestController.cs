@@ -8,7 +8,7 @@ using ResourceServer.Model;
 namespace ResourceServer.Controllers
 {
     /// <summary>
-    /// 用户
+    /// 这是Test
     /// </summary>
     public class TestController : BaseController
     {

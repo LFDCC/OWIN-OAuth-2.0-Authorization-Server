@@ -8,13 +8,10 @@ namespace ResourceServer.Areas.HelpPage.ModelDescriptions
     /// </summary>
     public abstract class ModelDescription
     {
-        [DisplayName("√Ë ˆ")]
         public string Documentation { get; set; }
-
-        [DisplayName("¿‡–Õ")]
+        
         public Type ModelType { get; set; }
-
-        [DisplayName("√˚≥∆")]
+        
         public string Name { get; set; }
     }
 }

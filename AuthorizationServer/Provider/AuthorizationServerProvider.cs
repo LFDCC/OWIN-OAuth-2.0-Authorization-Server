@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Auth.Infrastructure.Extension;
 using Auth.Infrastructure.Ioc;
 using Auth.Infrastructure.Tools.Encrypt;
 using Auth.Service.Interface;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth2;
 
 namespace AuthorizationServer.Provider
@@ -37,6 +40,19 @@ namespace AuthorizationServer.Provider
                     context.SetError("invalid_client", "客户端验证失败！");
                 }
             }
+        }
+        /// <summary>
+        /// 把Context中的属性加入到token中
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
+            return Task.FromResult(0);
         }
 
         #region 授权码模式/简化模式
@@ -73,16 +89,30 @@ namespace AuthorizationServer.Provider
 
         public override async Task GrantResourceOwnerCredentialsAsync(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var user = await userService.GetUserAsync(context.UserName, MD5.Encrypt(context.Password).ToUpper());
-            if (user != null)
+            if (context.UserName.IsNullOrWhiteSpace() || context.Password.IsNullOrWhiteSpace())
             {
-                var identity = new ClaimsIdentity(new GenericIdentity(user.UserName, OAuthDefaults.AuthenticationType), context.Scope.Select(x => new Claim("urn:oauth:scope", x)));
-
-                context.Validated(identity);
+                context.SetError("invalid_username_password", "用户名密码必填！");
             }
             else
             {
-                context.SetError("invalid_user_password", "用户名或密码无效！");
+                var password = MD5.Encrypt(context.Password).ToUpper();
+                var user = await userService.GetUserAsync(context.UserName, password);
+                if (user != null)
+                {
+                    var identity = new ClaimsIdentity(new GenericIdentity(user.UserName, OAuthDefaults.AuthenticationType), context.Scope.Select(x => new Claim("urn:oauth:scope", x)));
+
+                    var props = new AuthenticationProperties(new Dictionary<string, string> {
+                        { "UserDto", user.ToJson() }
+                    });//自定义输出参数
+                    
+                    var ticket = new AuthenticationTicket(identity, props);
+                    
+                    context.Validated(ticket);
+                }
+                else
+                {
+                    context.SetError("invalid_username_password", "用户名或密码无效！");
+                }
             }
         }
 

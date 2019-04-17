@@ -41,7 +41,7 @@ namespace AuthorizationServer
                 AuthenticationMode = AuthenticationMode.Active,
                 AuthorizeEndpointPath = new PathString(Paths.AuthorizePath),
                 TokenEndpointPath = new PathString(Paths.TokenPath),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(1),
 
                 // 授权服务
                 Provider = new AuthorizationServerProvider(),

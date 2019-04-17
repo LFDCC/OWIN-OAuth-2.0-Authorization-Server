@@ -519,6 +519,18 @@
             <param name="data">数据集</param>
             <returns></returns>
         </member>
+        <member name="T:ResourceServer.Controllers.ListTestController">
+            <summary>
+            这是List
+            </summary>
+        </member>
+        <member name="M:ResourceServer.Controllers.ListTestController.GetResult(Auth.Dto.UserDto)">
+            <summary>
+            返回集合
+            </summary>
+            <param name="userDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:ResourceServer.Controllers.TestController">
             <summary>
             用户
@@ -568,8 +580,8 @@
         </member>
         <member name="P:ResourceServer.Model.HttpResult`1.code">
             <summary>
-            编码
-            </summary>
+            返回代码（000000 成功 666666 失败 999999 警告）
+            </summary>        
         </member>
         <member name="P:ResourceServer.Model.HttpResult`1.msg">
             <summary>
@@ -586,17 +598,17 @@
             返回状态
             </summary>
         </member>
-        <member name="P:ResourceServer.Model.HttpStateCode.成功">
+        <member name="P:ResourceServer.Model.HttpStateCode.Success">
             <summary>
             000000 成功
             </summary>
         </member>
-        <member name="P:ResourceServer.Model.HttpStateCode.失败">
+        <member name="P:ResourceServer.Model.HttpStateCode.Fail">
             <summary>
             失败 666666
             </summary>
         </member>
-        <member name="P:ResourceServer.Model.HttpStateCode.警告">
+        <member name="P:ResourceServer.Model.HttpStateCode.Warn">
             <summary>
             警告 999999
             </summary>

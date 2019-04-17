@@ -1,12 +1,26 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
     @RenderSection("scripts", required: false)
 </head>
 <body>
+
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <h1><a href="/help/" style="text-decoration:none; color:white">对接文档</a></h1>
+            </div>
+        </div>
+    </header>
+    <div class="fill"></div>
     @RenderBody()
+
+    <footer>
+        <p>Copyright 1999-2019 公共服务器云平台</p>
+    </footer>
 </body>
 </html>

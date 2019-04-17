@@ -18,7 +18,7 @@ namespace AuthorizationServer.Provider
         public override Task CreateAsync(AuthenticationTokenCreateContext context)
         {
             context.Ticket.Properties.IssuedUtc = DateTime.Now;
-            context.Ticket.Properties.ExpiresUtc = DateTime.Now.AddSeconds(60);
+            context.Ticket.Properties.ExpiresUtc = DateTime.Now.AddMonths(2);
             context.SetToken(context.SerializeTicket());
             return Task.FromResult(0);
         }
