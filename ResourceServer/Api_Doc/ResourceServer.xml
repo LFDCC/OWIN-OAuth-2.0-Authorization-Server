@@ -486,37 +486,61 @@
             基类
             </summary>
         </member>
-        <member name="M:ResourceServer.Controllers.BaseController.Fail">
+        <member name="M:ResourceServer.Controllers.BaseController.Fail``1">
             <summary>
             失败
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ResourceServer.Controllers.BaseController.Fail(System.String)">
+        <member name="M:ResourceServer.Controllers.BaseController.Fail``1(System.String)">
             <summary>
             失败
             </summary>
             <param name="msg">消息</param>
             <returns></returns>
         </member>
-        <member name="M:ResourceServer.Controllers.BaseController.Success">
+        <member name="M:ResourceServer.Controllers.BaseController.Success``1">
             <summary>
             成功
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ResourceServer.Controllers.BaseController.Success(System.String)">
+        <member name="M:ResourceServer.Controllers.BaseController.Success``1(System.String)">
             <summary>
             成功
             </summary>
             <param name="msg">消息</param>
             <returns></returns>
         </member>
-        <member name="M:ResourceServer.Controllers.BaseController.Success(System.Object)">
+        <member name="M:ResourceServer.Controllers.BaseController.Success``1(``0)">
             <summary>
             成功
             </summary>
             <param name="data">数据集</param>
+            <returns></returns>
+        </member>
+        <member name="T:ResourceServer.Controllers.TestController">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="M:ResourceServer.Controllers.TestController.#ctor(Auth.Service.Interface.IUserService)">
+             <summary>
+            构造函数注入
+             </summary>
+             <param name="userService"></param>
+        </member>
+        <member name="M:ResourceServer.Controllers.TestController.GetTest(System.String,System.String)">
+            <summary>
+            获取用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ResourceServer.Controllers.TestController.GetResult(Auth.Dto.UserDto)">
+            <summary>
+            获取Result
+            </summary>
+            <param name="userDto"></param>
             <returns></returns>
         </member>
         <member name="T:ResourceServer.Controllers.UserController">
@@ -536,24 +560,30 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:ResourceServer.Model.HttpResult.code">
+        <member name="T:ResourceServer.Model.HttpResult`1">
             <summary>
-            响应编码
+            返回结果
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ResourceServer.Model.HttpResult`1.code">
+            <summary>
+            编码
             </summary>
         </member>
-        <member name="P:ResourceServer.Model.HttpResult._code">
+        <member name="P:ResourceServer.Model.HttpResult`1._code">
             <summary>
-            响应编码
+            编码
             </summary>
         </member>
-        <member name="P:ResourceServer.Model.HttpResult.msg">
+        <member name="P:ResourceServer.Model.HttpResult`1.msg">
             <summary>
             消息
             </summary>
         </member>
-        <member name="P:ResourceServer.Model.HttpResult.data">
+        <member name="P:ResourceServer.Model.HttpResult`1.data">
             <summary>
-            数据集
+            结果
             </summary>
         </member>
         <member name="T:ResourceServer.Provider.QueryStringBearerProvider">

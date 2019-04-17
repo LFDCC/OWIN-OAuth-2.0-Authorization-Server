@@ -4,16 +4,20 @@ using Newtonsoft.Json;
 
 namespace ResourceServer.Model
 {
+    /// <summary>
+    /// 返回结果
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class HttpResult<T>
     {
         /// <summary>
-        /// 响应编码
+        /// 编码
         /// </summary>
         [JsonIgnore]
         public HttpStateCode code { get; set; }
 
         /// <summary>
-        /// 响应编码
+        /// 编码
         /// </summary>
         [JsonProperty("code")]
         private string _code
@@ -34,7 +38,7 @@ namespace ResourceServer.Model
         public string msg { get; set; }
 
         /// <summary>
-        /// 数据集
+        /// 结果
         /// </summary>
         public T data { get; set; }
     }

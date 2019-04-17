@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Web.Http;
 using Auth.Dto;
 using Auth.Infrastructure.Extension;
 using Auth.Service.Interface;
@@ -9,7 +10,7 @@ namespace ResourceServer.Controllers
     /// <summary>
     /// 用户
     /// </summary>
-    public class UserController : BaseController
+    public class TestController : BaseController
     {
         private readonly IUserService userService;
 
@@ -17,7 +18,7 @@ namespace ResourceServer.Controllers
         ///构造函数注入
         /// </summary>
         /// <param name="userService"></param>
-        public UserController(IUserService userService)
+        public TestController(IUserService userService)
         {
             this.userService = userService;
         }
@@ -26,7 +27,7 @@ namespace ResourceServer.Controllers
         /// 获取用户
         /// </summary>
         /// <returns></returns>
-        public async Task<HttpResult<UserDto>> Get()
+        public async Task<HttpResult<UserDto>> GetTest(string a, string b)
         {
             var user = await userService.GetUserAsync(User.Identity.Name.To<int>());
             if (user != null)
@@ -37,6 +38,17 @@ namespace ResourceServer.Controllers
             {
                 return Fail<UserDto>();
             }
+        }
+
+        /// <summary>
+        /// 获取Result
+        /// </summary>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public HttpResult<string> GetResult(UserDto userDto)
+        {
+            return Fail<string>();
         }
     }
 }

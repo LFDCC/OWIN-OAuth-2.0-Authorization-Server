@@ -165,11 +165,11 @@ namespace ResourceServer.Areas.HelpPage
                 Type genericType = type.GetGenericTypeDefinition();
                 Type[] genericArguments = type.GetGenericArguments();
                 string genericTypeName = genericType.FullName;
-
-                // Trim the generic parameter counts from the name
-                genericTypeName = genericTypeName.Substring(0, genericTypeName.IndexOf('`'));
-                string[] argumentTypeNames = genericArguments.Select(t => GetTypeName(t)).ToArray();
-                name = String.Format(CultureInfo.InvariantCulture, "{0}{{{1}}}", genericTypeName, String.Join(",", argumentTypeNames));
+                return genericTypeName;
+                //// Trim the generic parameter counts from the name
+                //genericTypeName = genericTypeName.Substring(0, genericTypeName.IndexOf('`'));
+                //string[] argumentTypeNames = genericArguments.Select(t => GetTypeName(t)).ToArray();
+                //name = String.Format(CultureInfo.InvariantCulture, "{0}{{{1}}}", genericTypeName, String.Join(",", argumentTypeNames));
             }
             if (type.IsNested)
             {

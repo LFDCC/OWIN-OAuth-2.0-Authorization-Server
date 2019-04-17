@@ -5,10 +5,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Auth.Infrastructure.Extension;
+using ResourceServer.Model;
 
 namespace ResourceServer.Filter
 {
-    public class CustomAuthorized : FilterAttribute, IAuthorizationFilter
+    public class CustomAuthorizedAttribute : FilterAttribute, IAuthorizationFilter
     {
         public async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
@@ -18,7 +20,7 @@ namespace ResourceServer.Filter
             }
             else
             {
-                return await Task.FromResult(new HttpResponseMessage { Content = new StringContent("{\"code\":\"999999\",\"msg\":\"令牌无效\"}", Encoding.UTF8, "application/json") });
+                return await Task.FromResult(new HttpResponseMessage { Content = new StringContent(new HttpResult<string> { code = HttpStateCode.警告, msg = "令牌无效" }.ToJson(), Encoding.UTF8, "application/json") });
             }
         }
     }

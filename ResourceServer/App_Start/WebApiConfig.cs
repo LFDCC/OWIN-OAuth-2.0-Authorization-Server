@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using ResourceServer.Filter;
 using ResourceServer.Model;
 
 namespace ResourceServer
@@ -9,6 +10,8 @@ namespace ResourceServer
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Filters.Add(new CustomAuthorizedAttribute());
+
             //跨域配置
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
