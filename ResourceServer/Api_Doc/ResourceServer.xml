@@ -571,11 +571,6 @@
             编码
             </summary>
         </member>
-        <member name="P:ResourceServer.Model.HttpResult`1._code">
-            <summary>
-            编码
-            </summary>
-        </member>
         <member name="P:ResourceServer.Model.HttpResult`1.msg">
             <summary>
             消息
@@ -584,6 +579,26 @@
         <member name="P:ResourceServer.Model.HttpResult`1.data">
             <summary>
             结果
+            </summary>
+        </member>
+        <member name="T:ResourceServer.Model.HttpStateCode">
+            <summary>
+            返回状态
+            </summary>
+        </member>
+        <member name="P:ResourceServer.Model.HttpStateCode.成功">
+            <summary>
+            000000 成功
+            </summary>
+        </member>
+        <member name="P:ResourceServer.Model.HttpStateCode.失败">
+            <summary>
+            失败 666666
+            </summary>
+        </member>
+        <member name="P:ResourceServer.Model.HttpStateCode.警告">
+            <summary>
+            警告 999999
             </summary>
         </member>
         <member name="T:ResourceServer.Provider.QueryStringBearerProvider">

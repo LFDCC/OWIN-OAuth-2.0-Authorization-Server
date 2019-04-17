@@ -17,7 +17,7 @@ namespace ResourceServer.Controllers
         {
             return new HttpResult<T>
             {
-                code = HttpStateCode.失败
+                code = HttpStateCode.Fail
             };
         }
 
@@ -31,7 +31,7 @@ namespace ResourceServer.Controllers
         {
             return new HttpResult<T>
             {
-                code = HttpStateCode.失败,
+                code = HttpStateCode.Fail,
                 msg = msg
             };
         }
@@ -45,7 +45,7 @@ namespace ResourceServer.Controllers
         {
             return new HttpResult<T>
             {
-                code = HttpStateCode.成功
+                code = HttpStateCode.Success
             };
         }
 
@@ -59,7 +59,7 @@ namespace ResourceServer.Controllers
         {
             return new HttpResult<T>
             {
-                code = HttpStateCode.成功,
+                code = HttpStateCode.Success,
                 msg = msg
             };
         }
@@ -74,7 +74,7 @@ namespace ResourceServer.Controllers
         {
             return new HttpResult<T>
             {
-                code = HttpStateCode.成功,
+                code = HttpStateCode.Success,
                 data = data
             };
         }

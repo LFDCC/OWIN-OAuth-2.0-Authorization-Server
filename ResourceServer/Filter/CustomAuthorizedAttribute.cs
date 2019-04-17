@@ -20,7 +20,7 @@ namespace ResourceServer.Filter
             }
             else
             {
-                return await Task.FromResult(new HttpResponseMessage { Content = new StringContent(new HttpResult<string> { code = HttpStateCode.警告, msg = "令牌无效" }.ToJson(), Encoding.UTF8, "application/json") });
+                return await Task.FromResult(new HttpResponseMessage { Content = new StringContent(new HttpResult<string> { code = HttpStateCode.Warn, msg = "令牌无效" }.ToJson(), Encoding.UTF8, "application/json") });
             }
         }
     }
