@@ -3,15 +3,19 @@ using ResourceServer.Model;
 
 namespace ResourceServer.Controllers
 {
+    /// <summary>
+    /// 基类
+    /// </summary>
     public class BaseController : ApiController
     {
         /// <summary>
         /// 失败
         /// </summary>
         /// <returns></returns>
-        public HttpResult Fail()
+        [NonAction]
+        public HttpResult<T> Fail<T>()
         {
-            return new HttpResult
+            return new HttpResult<T>
             {
                 code = HttpStateCode.失败
             };
@@ -22,9 +26,10 @@ namespace ResourceServer.Controllers
         /// </summary>
         /// <param name="msg">消息</param>
         /// <returns></returns>
-        public HttpResult Fail(string msg)
+        [NonAction]
+        public HttpResult<T> Fail<T>(string msg)
         {
-            return new HttpResult
+            return new HttpResult<T>
             {
                 code = HttpStateCode.失败,
                 msg = msg
@@ -35,9 +40,10 @@ namespace ResourceServer.Controllers
         /// 成功
         /// </summary>
         /// <returns></returns>
-        public HttpResult Success()
+        [NonAction]
+        public HttpResult<T> Success<T>()
         {
-            return new HttpResult
+            return new HttpResult<T>
             {
                 code = HttpStateCode.成功
             };
@@ -48,9 +54,10 @@ namespace ResourceServer.Controllers
         /// </summary>
         /// <param name="msg">消息</param>
         /// <returns></returns>
-        public HttpResult Success(string msg)
+        [NonAction]
+        public HttpResult<T> Success<T>(string msg)
         {
-            return new HttpResult
+            return new HttpResult<T>
             {
                 code = HttpStateCode.成功,
                 msg = msg
@@ -62,28 +69,13 @@ namespace ResourceServer.Controllers
         /// </summary>
         /// <param name="data">数据集</param>
         /// <returns></returns>
-        public HttpResult Success(object data)
+        [NonAction]
+        public HttpResult<T> Success<T>(T data)
         {
-            return new HttpResult
+            return new HttpResult<T>
             {
                 code = HttpStateCode.成功,
                 data = data
-            };
-        }
-
-        /// <summary>
-        /// 成功
-        /// </summary>
-        /// <param name="data">数据集</param>
-        /// <param name="format">DateTime格式</param>
-        /// <returns></returns>
-        public HttpResult Success(object data, string format)
-        {
-            return new HttpResult
-            {
-                code = HttpStateCode.成功,
-                data = data,
-                format = format
             };
         }
     }

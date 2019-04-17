@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingConsole", "TestingCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Infrastructure", "Auth.Infrastructure\Auth.Infrastructure.csproj", "{BB65BD91-78ED-458B-9C7E-FAD1A311CEDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{348FC890-054A-40B1-9FF9-296B60C3F98A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Dto", "Auth.Dto\Auth.Dto.csproj", "{42CB8920-6AF3-4712-94AB-E6E7108984E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,10 +91,10 @@ Global
 		{BB65BD91-78ED-458B-9C7E-FAD1A311CEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB65BD91-78ED-458B-9C7E-FAD1A311CEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB65BD91-78ED-458B-9C7E-FAD1A311CEDC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{348FC890-054A-40B1-9FF9-296B60C3F98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{348FC890-054A-40B1-9FF9-296B60C3F98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{348FC890-054A-40B1-9FF9-296B60C3F98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{348FC890-054A-40B1-9FF9-296B60C3F98A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42CB8920-6AF3-4712-94AB-E6E7108984E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42CB8920-6AF3-4712-94AB-E6E7108984E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42CB8920-6AF3-4712-94AB-E6E7108984E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42CB8920-6AF3-4712-94AB-E6E7108984E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

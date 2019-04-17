@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Auth.Dto</name>
+    </assembly>
+    <members>
+        <member name="P:Auth.Dto.UserDto.Id">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Auth.Dto.UserDto.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+    </members>
+</doc>

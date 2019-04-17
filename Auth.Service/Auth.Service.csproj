@@ -55,6 +55,10 @@
       <Project>{14cfd801-aa99-4f58-bb8e-0ddb47652728}</Project>
       <Name>Auth.DbRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Auth.Dto\Auth.Dto.csproj">
+      <Project>{42CB8920-6AF3-4712-94AB-E6E7108984E8}</Project>
+      <Name>Auth.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Auth.Entities\Auth.Entities.csproj">
       <Project>{2751abdb-7005-49be-aef4-e83a39252fb0}</Project>
       <Name>Auth.Entities</Name>

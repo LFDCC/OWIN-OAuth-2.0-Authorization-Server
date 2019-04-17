@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
-using Auth.Entities;
+using Auth.Dto;
 using Auth.Infrastructure.Ioc;
 
 namespace Auth.Service.Interface
 {
     public interface IUserService : IDependency
     {
-        Task<UserEntity> GetUserAsync(int Id);
+        Task<UserDto> GetUserAsync(int Id);
 
-        Task<UserEntity> GetUserAsync(string UserName);
+        Task<UserDto> GetUserAsync(string UserName);
 
-        Task<UserEntity> GetUserAsync(string UserName, string Password);
+        Task<UserDto> GetUserAsync(string UserName, string Password);
 
         Task<bool> ExistAsync(int Id);
 

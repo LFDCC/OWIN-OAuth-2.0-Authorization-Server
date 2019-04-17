@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Auth.DbRepository;
-using Auth.Entities;
+using Auth.Dto;
 using Auth.Service.Interface;
 
 namespace Auth.Service
@@ -37,9 +37,19 @@ namespace Auth.Service
         /// </summary>
         /// <param name="Id">用户ID</param>
         /// <returns></returns>
-        public async Task<UserEntity> GetUserAsync(int Id)
+        public async Task<UserDto> GetUserAsync(int Id)
         {
-            return await UserDb.SingleAsync(t => t.Id == Id);
+            var entity = await UserDb.SingleAsync(t => t.Id == Id);
+            if (entity != null)
+            {
+                var dto = new UserDto
+                {
+                    Id = entity.Id,
+                    UserName = entity.UserName
+                };
+                return dto;
+            }
+            return null;
         }
 
         /// <summary>
@@ -47,14 +57,40 @@ namespace Auth.Service
         /// </summary>
         /// <param name="UserName">用户名</param>
         /// <returns></returns>
-        public async Task<UserEntity> GetUserAsync(string UserName)
+        public async Task<UserDto> GetUserAsync(string UserName)
         {
-            return await UserDb.SingleAsync(t => t.UserName == UserName);
+            var entity = await UserDb.SingleAsync(t => t.UserName == UserName);
+            if (entity != null)
+            {
+                var dto = new UserDto
+                {
+                    Id = entity.Id,
+                    UserName = entity.UserName
+                };
+                return dto;
+            }
+            return null;
         }
 
-        public async Task<UserEntity> GetUserAsync(string UserName, string Password)
+        /// <summary>
+        /// 获取用户
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        public async Task<UserDto> GetUserAsync(string UserName, string Password)
         {
-            return await UserDb.SingleAsync(t => t.UserName == UserName & t.Password == Password);
+            var entity = await UserDb.SingleAsync(t => t.UserName == UserName & t.Password == Password);
+            if (entity != null)
+            {
+                var dto = new UserDto
+                {
+                    Id = entity.Id,
+                    UserName = entity.UserName
+                };
+                return dto;
+            }
+            return null;
         }
     }
 }
