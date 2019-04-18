@@ -55,12 +55,6 @@ namespace AuthorizationServer.Controllers
                     });//自定义输出参数
                     authentication.SignIn(props, identity);
                 }
-                if (!string.IsNullOrEmpty(Request.Form.Get("submit.Login")))
-                {
-                    authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-                    authentication.Challenge(CookieAuthenticationDefaults.AuthenticationType);
-                    return new HttpUnauthorizedResult();
-                }
             }
 
             return View();

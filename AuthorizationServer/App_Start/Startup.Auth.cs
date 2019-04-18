@@ -1,4 +1,5 @@
 ﻿using System;
+using AuthorizationServer.Constant;
 using AuthorizationServer.Provider;
 
 using Microsoft.Owin;
@@ -17,10 +18,10 @@ namespace AuthorizationServer
             // 启用Cookie
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                CookieName = "OAuth.Cookie",
+                CookieName = ParamsDefault.CookieName,
                 AuthenticationType = CookieAuthenticationDefaults.AuthenticationType,//Cookies
-                LoginPath = new PathString("/Account/Login"),
-                LogoutPath = new PathString("/Account/Logout")
+                LoginPath = new PathString(ParamsDefault.LoginPath),
+                LogoutPath = new PathString(ParamsDefault.LogoutPath)
             });
 
             // 启动授权服务器
@@ -29,8 +30,8 @@ namespace AuthorizationServer
                 ApplicationCanDisplayErrors = true,//显示自定义的错误页面
                 AllowInsecureHttp = true,//允许客户端以http协议请求；
                 AuthenticationMode = AuthenticationMode.Active,
-                AuthorizeEndpointPath = new PathString("/OAuth/Authorize"),
-                TokenEndpointPath = new PathString("/OAuth/Token"),
+                AuthorizeEndpointPath = new PathString(ParamsDefault.AuthorizeEndpointPath),
+                TokenEndpointPath = new PathString(ParamsDefault.TokenEndpointPath),
                 AccessTokenExpireTimeSpan = TimeSpan.FromHours(2),
 
                 // 授权服务

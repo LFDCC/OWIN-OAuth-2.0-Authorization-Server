@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Auth.Infrastructure.Extension;
 using Auth.Infrastructure.Tools.Encrypt;
 using Auth.Service.Interface;
+using AuthorizationServer.Constant;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 
@@ -104,7 +105,7 @@ namespace AuthorizationServer.Controllers
 
                     signInManager.SignIn(new AuthenticationProperties(), identity);
 
-                    HttpCookie cookie = Request.Cookies["OAuth.Cookie"];
+                    HttpCookie cookie = Request.Cookies[ParamsDefault.CookieName];
 
                     if (cookie != null)
                     {
