@@ -41,6 +41,7 @@ namespace AuthorizationServer.Provider
                 }
             }
         }
+
         /// <summary>
         /// 把Context中的属性加入到token中
         /// </summary>
@@ -99,14 +100,14 @@ namespace AuthorizationServer.Provider
                 var user = await userService.GetUserAsync(context.UserName, password);
                 if (user != null)
                 {
-                    var identity = new ClaimsIdentity(new GenericIdentity(user.UserName, OAuthDefaults.AuthenticationType), context.Scope.Select(x => new Claim("urn:oauth:scope", x)));
+                    var identity = new ClaimsIdentity(new GenericIdentity(user.LoginName, OAuthDefaults.AuthenticationType), context.Scope.Select(x => new Claim("urn:oauth:scope", x)));
 
                     var props = new AuthenticationProperties(new Dictionary<string, string> {
                         { "UserDto", user.ToJson() }
                     });//自定义输出参数
-                    
+
                     var ticket = new AuthenticationTicket(identity, props);
-                    
+
                     context.Validated(ticket);
                 }
                 else

@@ -1,62 +1,147 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using Auth.Infrastructure.Extension;
+using Auth.Infrastructure.Tools.Encrypt;
+using Auth.Service.Interface;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 
 namespace AuthorizationServer.Controllers
 {
     public class AccountController : Controller
     {
-        public ActionResult Login()
+        private IAuthenticationManager signInManager
         {
-            var authentication = HttpContext.GetOwinContext().Authentication;
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
+        private readonly IUserService userService;
+
+        public AccountController(IUserService userService)
+        {
+            this.userService = userService;
+        }
+
+        public async Task<ActionResult> Login()
+        {
             if (Request.HttpMethod == "POST")
             {
-                var isPersistent = !string.IsNullOrEmpty(Request.Form.Get("isPersistent"));
-
+                var ticket = await signInManager.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationType);
                 if (!string.IsNullOrEmpty(Request.Form.Get("submit.Signin")))
                 {
-                    authentication.SignIn(
-                        new AuthenticationProperties { IsPersistent = isPersistent },
-                        new ClaimsIdentity(new[] { new Claim(ClaimsIdentity.DefaultNameClaimType, Request.Form["username"]) }, "Application"));
-                }
-            }
-
-            return View();
-        }
-
-        public ActionResult Logout()
-        {
-            return View();
-        }
-
-        public ActionResult External()
-        {
-            var authentication = HttpContext.GetOwinContext().Authentication;
-            if (Request.HttpMethod == "POST")
-            {
-                foreach (var key in Request.Form.AllKeys)
-                {
-                    if (key.StartsWith("submit.External.") && !string.IsNullOrEmpty(Request.Form.Get(key)))
+                    var username = Request.Form["username"];
+                    var password = Request.Form["password"];
+                    if (username.IsNullOrWhiteSpace() || password.IsNullOrWhiteSpace())
                     {
-                        var authType = key.Substring("submit.External.".Length);
-                        authentication.Challenge(authType);
-                        return new HttpUnauthorizedResult();
+                        ViewBag.msg = "用户名或密码为空！";
+                    }
+                    else
+                    {
+                        password = MD5.Encrypt(password).ToUpper();
+                        var result = await userService.ExistAsync(username, password);
+                        if (result)
+                        {
+                            ///id验证
+                            var identity = new ClaimsIdentity(new List<Claim>
+                            {
+                                new Claim(ClaimTypes.NameIdentifier, username),
+                                new Claim(ClaimTypes.Name, username)
+                            }, CookieAuthenticationDefaults.AuthenticationType);
+
+                            signInManager.SignIn(new AuthenticationProperties(), identity);
+                        }
+                        else
+                        {
+                            ViewBag.msg = "用户名或密码错误！";
+                        }
                     }
                 }
             }
-            var identity = authentication.AuthenticateAsync("External").Result.Identity;
-            if (identity != null)
-            {
-                authentication.SignOut("External");
-                authentication.SignIn(
-                    new AuthenticationProperties { IsPersistent = true },
-                    new ClaimsIdentity(identity.Claims, "Application", identity.NameClaimType, identity.RoleClaimType));
-                return Redirect(Request.QueryString["ReturnUrl"]);
-            }
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            signInManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            signInManager.Challenge(CookieAuthenticationDefaults.AuthenticationType);
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Login_External(string username, string password)
+        {
+            if (username.IsNullOrWhiteSpace() || password.IsNullOrWhiteSpace())
+            {
+                return await Task.FromResult(new JsonResult()
+                {
+                    Data = new
+                    {
+                        code = "666666",
+                        msg = "用户名或密码为空！"
+                    }
+                });
+            }
+            else
+            {
+                password = MD5.Encrypt(password).ToUpper();
+                var result = await userService.ExistAsync(username, password);
+                if (result)
+                {
+                    ///id验证
+                    var identity = new ClaimsIdentity(new List<Claim>
+                            {
+                                new Claim(ClaimTypes.NameIdentifier, username),
+                                new Claim(ClaimTypes.Name, username)
+                            }, CookieAuthenticationDefaults.AuthenticationType);
+
+                    signInManager.SignIn(new AuthenticationProperties(), identity);
+
+                    HttpCookie cookie = Request.Cookies["OAuth.Cookie"];
+
+                    if (cookie != null)
+                    {
+                        return await Task.FromResult(new JsonResult()
+                        {
+                            Data = new
+                            {
+                                code = "000000",
+                                msg = "登录成功！",
+                                data = cookie
+                            }
+                        });
+                    }
+                    else
+                    {
+                        return await Task.FromResult(new JsonResult()
+                        {
+                            Data = new
+                            {
+                                code = "666666",
+                                msg = "登录失败！"
+                            }
+                        });
+                    }
+                }
+                else
+                {
+                    return await Task.FromResult(new JsonResult()
+                    {
+                        Data = new
+                        {
+                            code = "666666",
+                            msg = "用户名或密码错误！"
+                        }
+                    });
+                }
+            }
         }
     }
 }

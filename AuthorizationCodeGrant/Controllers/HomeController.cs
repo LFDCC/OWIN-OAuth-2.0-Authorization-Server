@@ -70,7 +70,7 @@ namespace AuthorizationCodeGrant.Controllers
                 AuthorizationEndpoint = new Uri(authorizationServerUri, Paths.AuthorizePath),
                 TokenEndpoint = new Uri(authorizationServerUri, Paths.TokenPath)
             };
-            _webServerClient = new WebServerClient(authorizationServer, "1", "2");
+            _webServerClient = new WebServerClient(authorizationServer, "111111", "000000");
         }
     }
 }

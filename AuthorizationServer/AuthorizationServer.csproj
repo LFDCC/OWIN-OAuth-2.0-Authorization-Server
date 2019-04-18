@@ -118,9 +118,7 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Views\web.config" />
-    <Content Include="Views\Account\External.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\OAuth\Authorize.cshtml" />
     <Content Include="Views\OAuth\AuthorizeError.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />

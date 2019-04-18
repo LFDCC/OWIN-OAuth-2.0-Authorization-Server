@@ -1,6 +1,5 @@
 ﻿using System;
 using AuthorizationServer.Provider;
-using Constants;
 
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -15,22 +14,13 @@ namespace AuthorizationServer
     {
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Enable Application Sign In Cookie
+            // 启用Cookie
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = "Application",
-                AuthenticationMode = AuthenticationMode.Passive,
-                LoginPath = new PathString(Paths.LoginPath),
-                LogoutPath = new PathString(Paths.LogoutPath),
-            });
-            // Enable External Sign In Cookie
-            app.SetDefaultSignInAsAuthenticationType("External");
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = "External",
-                AuthenticationMode = AuthenticationMode.Passive,
-                CookieName = CookieAuthenticationDefaults.CookiePrefix + "External",
-                ExpireTimeSpan = TimeSpan.FromMinutes(5),
+                CookieName = "OAuth.Cookie",
+                AuthenticationType = CookieAuthenticationDefaults.AuthenticationType,//Cookies
+                LoginPath = new PathString("/Account/Login"),
+                LogoutPath = new PathString("/Account/Logout")
             });
 
             // 启动授权服务器
@@ -39,9 +29,9 @@ namespace AuthorizationServer
                 ApplicationCanDisplayErrors = true,//显示自定义的错误页面
                 AllowInsecureHttp = true,//允许客户端以http协议请求；
                 AuthenticationMode = AuthenticationMode.Active,
-                AuthorizeEndpointPath = new PathString(Paths.AuthorizePath),
-                TokenEndpointPath = new PathString(Paths.TokenPath),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(1),
+                AuthorizeEndpointPath = new PathString("/OAuth/Authorize"),
+                TokenEndpointPath = new PathString("/OAuth/Token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(2),
 
                 // 授权服务
                 Provider = new AuthorizationServerProvider(),

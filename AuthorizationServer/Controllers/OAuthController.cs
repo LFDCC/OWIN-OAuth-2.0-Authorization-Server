@@ -1,13 +1,17 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 
 namespace AuthorizationServer.Controllers
 {
     public class OAuthController : Controller
     {
-        public ActionResult Authorize()
+        public async Task<ActionResult> Authorize()
         {
             if (Response.StatusCode != 200)
             {
@@ -15,11 +19,12 @@ namespace AuthorizationServer.Controllers
             }
 
             var authentication = HttpContext.GetOwinContext().Authentication;
-            var ticket = authentication.AuthenticateAsync("Application").Result;
+            var ticket = await authentication.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationType);
             var identity = ticket != null ? ticket.Identity : null;
             if (identity == null)
             {
-                authentication.Challenge("Application");
+                authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+                authentication.Challenge(CookieAuthenticationDefaults.AuthenticationType);
                 return new HttpUnauthorizedResult();
             }
 
@@ -31,7 +36,10 @@ namespace AuthorizationServer.Controllers
                 {
                     identity.AddClaim(new Claim("urn:oauth:scope", scope));
                 }
-                authentication.SignIn(identity);
+                var props = new AuthenticationProperties(new Dictionary<string, string> {
+                        { "uid", identity.Name }
+                    });//自定义输出参数
+                authentication.SignIn(props, identity);
             }
             if (Request.HttpMethod == "POST")
             {
@@ -42,12 +50,15 @@ namespace AuthorizationServer.Controllers
                     {
                         identity.AddClaim(new Claim("urn:oauth:scope", scope));
                     }
-                    authentication.SignIn(identity);
+                    var props = new AuthenticationProperties(new Dictionary<string, string> {
+                        { "uid", identity.Name }
+                    });//自定义输出参数
+                    authentication.SignIn(props, identity);
                 }
                 if (!string.IsNullOrEmpty(Request.Form.Get("submit.Login")))
                 {
-                    authentication.SignOut("Application");
-                    authentication.Challenge("Application");
+                    authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+                    authentication.Challenge(CookieAuthenticationDefaults.AuthenticationType);
                     return new HttpUnauthorizedResult();
                 }
             }

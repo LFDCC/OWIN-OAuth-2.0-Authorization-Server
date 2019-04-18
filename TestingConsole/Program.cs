@@ -30,7 +30,7 @@ namespace TestingConsole
             //};
             //var result = await Db.Queryable<UserEntity>().Where(t => t.Id == 4444).ToPageListAsync(page.PageIndex, page.PageSize, page.PageCount);
             //page.PageCount = result.Value;
-            var f = await Db.Queryable<UserEntity>().SingleAsync(t => t.Id == 1);
+            var f = await Db.Queryable<UserEntity>().SingleAsync(t => t.UserId == 1);
             Console.ReadLine();
         }
     }

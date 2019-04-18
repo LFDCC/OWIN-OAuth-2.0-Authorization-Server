@@ -14,7 +14,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<bool> ExistAsync(string ClientId)
         {
-            return await ClientDb.IsAnyAsync(t => t.Id == ClientId);
+            return await ClientDb.IsAnyAsync(t => t.ClientId == ClientId);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<bool> ExistAsync(string ClientId, string ClientSecret)
         {
-            return await ClientDb.IsAnyAsync(t => t.Id == ClientId & t.Secret == ClientSecret);
+            return await ClientDb.IsAnyAsync(t => t.ClientId == ClientId & t.ClientSecret == ClientSecret);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<ClientEntity> GetClientAsync(string ClientId)
         {
-            return await ClientDb.SingleAsync(t => t.Id == ClientId);
+            return await ClientDb.SingleAsync(t => t.ClientId == ClientId);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<ClientEntity> GetClientAsync(string ClientId, string ClientSecret)
         {
-            return await ClientDb.SingleAsync(t => t.Id == ClientId & t.Secret == ClientSecret);
+            return await ClientDb.SingleAsync(t => t.ClientId == ClientId & t.ClientSecret == ClientSecret);
         }
     }
 }
