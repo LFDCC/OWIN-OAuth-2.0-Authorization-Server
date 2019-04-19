@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Auth.Infrastructure.Extension;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 
@@ -23,9 +25,18 @@ namespace AuthorizationServer.Controllers
             var identity = ticket != null ? ticket.Identity : null;
             if (identity == null)
             {
-                authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-                authentication.Challenge(CookieAuthenticationDefaults.AuthenticationType);
-                return new HttpUnauthorizedResult();
+                var PlatUrl = ConfigurationManager.AppSettings["PlatUrl"];
+                if (PlatUrl.IsNullOrWhiteSpace())
+                {
+                    authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+                    authentication.Challenge(CookieAuthenticationDefaults.AuthenticationType);
+                    return new HttpUnauthorizedResult();
+                }
+                else
+                {
+                    var RedirectUrl = HttpUtility.UrlEncode(Request.Url.AbsoluteUri);
+                    Response.Redirect(PlatUrl + "?RedirectUrl=" + RedirectUrl, true);
+                }
             }
 
             var scopes = (Request.QueryString.Get("scope") ?? "").Split(' ');
