@@ -3,10 +3,13 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 using Auth.Infrastructure.Extension;
 using Auth.Infrastructure.Tools.Encrypt;
 using Auth.Service.Interface;
+
 using AuthorizationServer.Constant;
+
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 
@@ -45,14 +48,13 @@ namespace AuthorizationServer.Controllers
                     else
                     {
                         password = MD5.Encrypt(password).ToUpper();
-                        var result = await userService.ExistAsync(username, password);
-                        if (result)
+                        var userDto = await userService.GetUserAsync(username, password);
+                        if (userDto != null)
                         {
                             ///id验证
                             var identity = new ClaimsIdentity(new List<Claim>
                             {
-                                new Claim(ClaimTypes.NameIdentifier, username),
-                                new Claim(ClaimTypes.Name, username)
+                                new Claim(ClaimTypes.Name, userDto.UserId.ToString())
                             }, CookieAuthenticationDefaults.AuthenticationType);
 
                             signInManager.SignIn(new AuthenticationProperties(), identity);
@@ -93,14 +95,13 @@ namespace AuthorizationServer.Controllers
             else
             {
                 password = MD5.Encrypt(password).ToUpper();
-                var result = await userService.ExistAsync(username, password);
-                if (result)
+                var userDto = await userService.GetUserAsync(username, password);
+                if (userDto != null)
                 {
                     ///id验证
                     var identity = new ClaimsIdentity(new List<Claim>
                             {
-                                new Claim(ClaimTypes.NameIdentifier, username),
-                                new Claim(ClaimTypes.Name, username)
+                                new Claim(ClaimTypes.Name, userDto.UserId.ToString())
                             }, CookieAuthenticationDefaults.AuthenticationType);
 
                     signInManager.SignIn(new AuthenticationProperties(), identity);

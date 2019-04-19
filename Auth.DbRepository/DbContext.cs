@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+
 using Auth.Entities;
+
 using SqlSugar;
 
 namespace Auth.DbRepository
@@ -33,6 +32,5 @@ namespace Auth.DbRepository
 
         public DbSet<UserEntity> UserDb { get { return new DbSet<UserEntity>(Db); } }
         public DbSet<ClientEntity> ClientDb { get { return new DbSet<ClientEntity>(Db); } }
-        
     }
 }

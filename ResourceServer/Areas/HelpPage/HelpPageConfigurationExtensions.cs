@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
+
 using ResourceServer.Areas.HelpPage.ModelDescriptions;
 using ResourceServer.Areas.HelpPage.Models;
 
@@ -282,7 +283,7 @@ namespace ResourceServer.Areas.HelpPage
                     //     public int Y { get; set; }
                     // }
                     // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
-                    // 
+                    //
                     // public class Point
                     // {
                     //     public int X { get; set; }

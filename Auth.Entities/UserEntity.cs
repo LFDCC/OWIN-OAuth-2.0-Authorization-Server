@@ -1,4 +1,5 @@
 ﻿using System;
+
 using SqlSugar;
 
 namespace Auth.Entities

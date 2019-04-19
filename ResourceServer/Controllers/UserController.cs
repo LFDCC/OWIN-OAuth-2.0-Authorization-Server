@@ -1,7 +1,10 @@
 ﻿using System.Threading.Tasks;
+using System.Web.Http;
+
 using Auth.Dto;
 using Auth.Infrastructure.Extension;
 using Auth.Service.Interface;
+
 using ResourceServer.Model;
 
 namespace ResourceServer.Controllers
@@ -25,17 +28,26 @@ namespace ResourceServer.Controllers
         /// <summary>
         /// 获取用户
         /// </summary>
+        /// <param name="uid">用户ID</param>
         /// <returns></returns>
-        public async Task<HttpResult<UserDto>> Get()
+        [HttpPost]
+        public async Task<HttpResult<UserDto>> GetUser(int uid)
         {
-            var user = await userService.GetUserAsync(User.Identity.Name.To<int>());
-            if (user != null)
+            if (uid != User.Identity.Name.To<int>())
             {
-                return Success(user);
+                return Fail<UserDto>("uid异常");
             }
             else
             {
-                return Fail<UserDto>();
+                var user = await userService.GetUserAsync(User.Identity.Name.To<int>());
+                if (user != null)
+                {
+                    return Success(user);
+                }
+                else
+                {
+                    return Fail<UserDto>("用户不存在");
+                }
             }
         }
     }

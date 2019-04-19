@@ -12,12 +12,14 @@ namespace Auth.Entities
 
         public string ClientSecret { get; set; }
 
-        public string RedirectUrl { get; set; }
+        public string ClientImage { get; set; }
 
         public string ClientDesc { get; set; }
 
+        public string RedirectUrl { get; set; }
+
         public int Sort { get; set; }
 
-        public int GroupId { get; set; }
+        public string GrantType { get; set; }
     }
 }

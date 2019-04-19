@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+
 using Microsoft.Owin.Security.OAuth2;
 
 namespace ResourceServer.Provider

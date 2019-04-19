@@ -5,7 +5,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 using Auth.Infrastructure.Extension;
+
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 

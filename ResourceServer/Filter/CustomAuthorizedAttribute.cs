@@ -5,7 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+
 using Auth.Infrastructure.Extension;
+
 using ResourceServer.Model;
 
 namespace ResourceServer.Filter

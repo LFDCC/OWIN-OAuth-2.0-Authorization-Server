@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ResourceServer.Model
+﻿namespace ResourceServer.Model
 {
     /// <summary>
     /// 返回结果
@@ -10,7 +8,7 @@ namespace ResourceServer.Model
     {
         /// <summary>
         /// 返回代码（000000 成功 666666 失败 999999 警告）
-        /// </summary>        
+        /// </summary>
         public string code { get; set; }
 
         /// <summary>

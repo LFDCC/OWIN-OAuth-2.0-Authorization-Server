@@ -4,10 +4,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+
 using Auth.Infrastructure.Extension;
 using Auth.Infrastructure.Ioc;
 using Auth.Infrastructure.Tools.Encrypt;
 using Auth.Service.Interface;
+
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth2;
 

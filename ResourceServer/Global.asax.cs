@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
+
 using Auth.Infrastructure.Ioc;
 
 namespace ResourceServer

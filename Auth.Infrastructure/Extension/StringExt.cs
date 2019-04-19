@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+
 using Auth.Infrastructure.Tools.Encrypt;
 
 namespace Auth.Infrastructure.Extension

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+
 using Microsoft.Owin.Security.Infrastructure;
 
 namespace AuthorizationServer.Provider
