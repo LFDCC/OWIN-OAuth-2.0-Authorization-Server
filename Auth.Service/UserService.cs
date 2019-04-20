@@ -25,12 +25,12 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<bool> ExistAsync(string UserName)
         {
-            return await UserDb.IsAnyAsync(t => t.LoginName == UserName);
+            return await UserDb.IsAnyAsync(t => t.UserName == UserName);
         }
 
         public async Task<bool> ExistAsync(string UserName, string Password)
         {
-            return await UserDb.IsAnyAsync(t => t.LoginName == UserName & t.Password == Password);
+            return await UserDb.IsAnyAsync(t => t.UserName == UserName & t.Password == Password);
         }
 
         /// <summary>
@@ -45,26 +45,11 @@ namespace Auth.Service
             {
                 var dto = new UserDto
                 {
-                    BlocId = entity.BlocId,
-                    CardNo = entity.CardNo,
-                    ClassId = entity.ClassId,
                     CreateTime = entity.CreateTime,
                     Email = entity.Email,
-                    GradeId = entity.GradeId,
-                    LoginName = entity.LoginName,
+                    UserName = entity.UserName,
                     Phone = entity.Phone,
-                    UserId = entity.UserId,
-                    QrCode = entity.QrCode,
-                    RealName = entity.RealName,
-                    RoleId = entity.RoleId,
-                    SchoolId = entity.SchoolId,
-                    ScoreCur = entity.ScoreCur,
-                    ScorePlus = entity.ScorePlus,
-                    ScoreSub = entity.ScoreSub,
-                    Sex = entity.Sex,
-                    UserAudit = entity.UserAudit,
-                    UserFrom = entity.UserFrom,
-                    UserState = entity.UserState
+                    UserId = entity.UserId
                 };
                 return dto;
             }
@@ -78,31 +63,16 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<UserDto> GetUserAsync(string UserName)
         {
-            var entity = await UserDb.SingleAsync(t => t.LoginName == UserName);
+            var entity = await UserDb.SingleAsync(t => t.UserName == UserName);
             if (entity != null)
             {
                 var dto = new UserDto
                 {
-                    BlocId = entity.BlocId,
-                    CardNo = entity.CardNo,
-                    ClassId = entity.ClassId,
                     CreateTime = entity.CreateTime,
                     Email = entity.Email,
-                    GradeId = entity.GradeId,
-                    LoginName = entity.LoginName,
+                    UserName = entity.UserName,
                     Phone = entity.Phone,
-                    UserId = entity.UserId,
-                    QrCode = entity.QrCode,
-                    RealName = entity.RealName,
-                    RoleId = entity.RoleId,
-                    SchoolId = entity.SchoolId,
-                    ScoreCur = entity.ScoreCur,
-                    ScorePlus = entity.ScorePlus,
-                    ScoreSub = entity.ScoreSub,
-                    Sex = entity.Sex,
-                    UserAudit = entity.UserAudit,
-                    UserFrom = entity.UserFrom,
-                    UserState = entity.UserState
+                    UserId = entity.UserId
                 };
                 return dto;
             }
@@ -117,31 +87,16 @@ namespace Auth.Service
         /// <returns></returns>
         public async Task<UserDto> GetUserAsync(string UserName, string Password)
         {
-            var entity = await UserDb.SingleAsync(t => t.LoginName == UserName & t.Password == Password);
+            var entity = await UserDb.SingleAsync(t => t.UserName == UserName & t.Password == Password);
             if (entity != null)
             {
                 var dto = new UserDto
                 {
-                    BlocId = entity.BlocId,
-                    CardNo = entity.CardNo,
-                    ClassId = entity.ClassId,
                     CreateTime = entity.CreateTime,
                     Email = entity.Email,
-                    GradeId = entity.GradeId,
-                    LoginName = entity.LoginName,
+                    UserName = entity.UserName,
                     Phone = entity.Phone,
-                    UserId = entity.UserId,
-                    QrCode = entity.QrCode,
-                    RealName = entity.RealName,
-                    RoleId = entity.RoleId,
-                    SchoolId = entity.SchoolId,
-                    ScoreCur = entity.ScoreCur,
-                    ScorePlus = entity.ScorePlus,
-                    ScoreSub = entity.ScoreSub,
-                    Sex = entity.Sex,
-                    UserAudit = entity.UserAudit,
-                    UserFrom = entity.UserFrom,
-                    UserState = entity.UserState
+                    UserId = entity.UserId
                 };
                 return dto;
             }

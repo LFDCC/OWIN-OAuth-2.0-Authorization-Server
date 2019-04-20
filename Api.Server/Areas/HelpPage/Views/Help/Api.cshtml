@@ -1,0 +1,14 @@
+@using System.Web.Http
+@using Api.Server.Areas.HelpPage.Models
+@model HelpPageApiModel
+
+@{
+    var description = Model.ApiDescription;
+    ViewBag.Title = description.HttpMethod.Method + " " + description.RelativePath;
+}
+
+<div id="body" class="help-page">
+    <section class="content-wrapper main-content clear-fix">
+        @Html.DisplayForModel()
+    </section>
+</div>

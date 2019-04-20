@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Auth.Dto</name>
+    </assembly>
+    <members>
+        <member name="T:Auth.Dto.UserDto">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Auth.Dto.UserDto.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Auth.Dto.UserDto.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Auth.Dto.UserDto.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:Auth.Dto.UserDto.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Auth.Dto.UserDto.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+    </members>
+</doc>

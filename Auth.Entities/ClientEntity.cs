@@ -1,8 +1,9 @@
-﻿using SqlSugar;
+﻿using System;
+using SqlSugar;
 
 namespace Auth.Entities
 {
-    [SugarTable("T_Client")]
+    [SugarTable("Sys_Client")]
     public class ClientEntity
     {
         [SugarColumn(IsPrimaryKey = true)]
@@ -21,5 +22,7 @@ namespace Auth.Entities
         public int Sort { get; set; }
 
         public string GrantType { get; set; }
+
+        public DateTime? CreateTime { get; set; }
     }
 }
