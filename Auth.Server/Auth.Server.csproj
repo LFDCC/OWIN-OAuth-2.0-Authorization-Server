@@ -149,6 +149,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Auth.DbRepository\Auth.DbRepository.csproj">
+      <Project>{14CFD801-AA99-4F58-BB8E-0DDB47652728}</Project>
+      <Name>Auth.DbRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Auth.Dto\Auth.Dto.csproj">
       <Project>{42cb8920-6af3-4712-94ab-e6e7108984e8}</Project>
       <Name>Auth.Dto</Name>

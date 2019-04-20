@@ -1,11 +1,9 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
-
+using Api.Server.Model;
 using Auth.Dto;
 using Auth.Infrastructure.Extension;
 using Auth.Service.Interface;
-
-using Api.Server.Model;
 
 namespace Api.Server.Controllers
 {
@@ -23,6 +21,22 @@ namespace Api.Server.Controllers
         public UserController(IUserService userService)
         {
             this.userService = userService;
+        }
+        /// <summary>
+        /// 获取用户
+        /// </summary>
+        /// <returns></returns>
+        public async Task<HttpResult<UserDto>> Get()
+        {
+            var user = await userService.GetUserAsync(User.Identity.Name.To<int>());
+            if (user != null)
+            {
+                return Success(user);
+            }
+            else
+            {
+                return Fail<UserDto>("用户不存在");
+            }
         }
 
         /// <summary>

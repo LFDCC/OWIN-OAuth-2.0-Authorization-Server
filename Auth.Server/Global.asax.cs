@@ -1,5 +1,5 @@
 ﻿using System.Web.Routing;
-
+using Auth.DbRepository;
 using Auth.Infrastructure.Ioc;
 
 namespace Auth.Server
@@ -10,6 +10,7 @@ namespace Auth.Server
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AutoFacMvcConfig.RegisterContainer();
+            DbData.Initial();
         }
     }
 }

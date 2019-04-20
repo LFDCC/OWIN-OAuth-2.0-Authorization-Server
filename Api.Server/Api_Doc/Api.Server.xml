@@ -530,6 +530,12 @@
              </summary>
              <param name="userService"></param>
         </member>
+        <member name="M:Api.Server.Controllers.UserController.Get">
+            <summary>
+            获取用户
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Api.Server.Controllers.UserController.GetUser(System.Int32)">
             <summary>
             获取用户

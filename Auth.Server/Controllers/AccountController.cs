@@ -45,7 +45,7 @@ namespace Auth.Server.Controllers
                     }
                     else
                     {
-                        password = MD5.Encrypt(password).ToUpper();
+                        password = MD5.Encrypt(password);
                         var userDto = await userService.GetUserAsync(username, password);
                         if (userDto != null)
                         {

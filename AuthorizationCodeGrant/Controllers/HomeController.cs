@@ -34,7 +34,8 @@ namespace AuthorizationCodeGrant.Controllers
 
             if (!string.IsNullOrEmpty(Request.Form.Get("submit.Authorize")))
             {
-                var userAuthorization = _webServerClient.PrepareRequestUserAuthorization(new[] { "bio", "notes", "default" });
+                var uri = new Uri(Paths.AuthorizeCodeCallBackPath);
+                var userAuthorization = _webServerClient.PrepareRequestUserAuthorization(new[] { "bio", "notes", "default" }, uri);
                 userAuthorization.Send(HttpContext);
                 Response.End();
             }
@@ -70,7 +71,7 @@ namespace AuthorizationCodeGrant.Controllers
                 AuthorizationEndpoint = new Uri(authorizationServerUri, Paths.AuthorizePath),
                 TokenEndpoint = new Uri(authorizationServerUri, Paths.TokenPath)
             };
-            _webServerClient = new WebServerClient(authorizationServer, "111111", "000000");
+            _webServerClient = new WebServerClient(authorizationServer, "000000", "111111");
         }
     }
 }
