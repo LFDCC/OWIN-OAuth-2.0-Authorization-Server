@@ -13,18 +13,24 @@ namespace Auth.Infrastructure.Ioc
     public class AutoFacApiConfig
     {
         /// <summary>
+        /// IOC 容器
+        /// </summary>
+        public static IContainer container = null;
+
+        /// <summary>
         /// 获取实例化对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T Resolve<T>(HttpRequestMessage httpRequest) where T : class
+        public static T Resolve<T>()
         {
             try
             {
-                var requestScope = httpRequest.GetDependencyScope();
-
-                var service = requestScope.GetService(typeof(T)) as T;
-                return service;
+                if (container == null)
+                {
+                    RegisterContainer();
+                }
+                return container.Resolve<T>();
             }
             catch (Exception ex)
             {
@@ -46,12 +52,12 @@ namespace Auth.Infrastructure.Ioc
 
             builder.RegisterAssemblyTypes(assemblys.ToArray())
             .Where(t => baseType.IsAssignableFrom(t) && !t.IsAbstract)//注册所有实现IDependency接口的类
-            .AsImplementedInterfaces().InstancePerRequest();
+            .AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterWebApiFilterProvider(config);//注册到筛选器
             builder.RegisterApiControllers(Assembly.GetCallingAssembly());//注册api控制器的实现
 
-            var container = builder.Build();
+            container = builder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }

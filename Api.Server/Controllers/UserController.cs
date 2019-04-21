@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Server.Model;
 using Auth.Dto;
 using Auth.Infrastructure.Extension;
+using Auth.Infrastructure.Ioc;
 using Auth.Service.Interface;
 
 namespace Api.Server.Controllers
