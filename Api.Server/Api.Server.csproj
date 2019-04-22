@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
@@ -179,7 +180,6 @@
     </Compile>
     <Compile Include="Model\HttpResult.cs" />
     <Compile Include="Model\HttpStateCode.cs" />
-    <Compile Include="Model\JsonContentNegotiator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\AccessTokenProvider.cs" />
     <Compile Include="Provider\QueryStringBearerProvider .cs" />

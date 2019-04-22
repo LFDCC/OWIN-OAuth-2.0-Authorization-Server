@@ -14,12 +14,13 @@ namespace Api.Server.Controllers
         /// </summary>
         /// <returns></returns>
         [NonAction]
-        public HttpResult<T> Fail<T>()
+        public IHttpActionResult Fail<T>()
         {
-            return new HttpResult<T>
+            var result = new HttpResult<T>
             {
                 code = HttpStateCode.Fail
             };
+            return Json(result);
         }
 
         /// <summary>
@@ -28,13 +29,14 @@ namespace Api.Server.Controllers
         /// <param name="msg">消息</param>
         /// <returns></returns>
         [NonAction]
-        public HttpResult<T> Fail<T>(string msg)
+        public IHttpActionResult Fail<T>(string msg)
         {
-            return new HttpResult<T>
+            var result = new HttpResult<T>
             {
                 code = HttpStateCode.Fail,
                 msg = msg
             };
+            return Json(result);
         }
 
         /// <summary>
@@ -42,12 +44,13 @@ namespace Api.Server.Controllers
         /// </summary>
         /// <returns></returns>
         [NonAction]
-        public HttpResult<T> Success<T>()
+        public IHttpActionResult Success<T>()
         {
-            return new HttpResult<T>
+            var result = new HttpResult<T>
             {
                 code = HttpStateCode.Success
             };
+            return Json(result);
         }
 
         /// <summary>
@@ -56,13 +59,14 @@ namespace Api.Server.Controllers
         /// <param name="msg">消息</param>
         /// <returns></returns>
         [NonAction]
-        public HttpResult<T> Success<T>(string msg)
+        public IHttpActionResult Success<T>(string msg)
         {
-            return new HttpResult<T>
+            var result = new HttpResult<T>
             {
                 code = HttpStateCode.Success,
                 msg = msg
             };
+            return Json(result);
         }
 
         /// <summary>
@@ -71,13 +75,15 @@ namespace Api.Server.Controllers
         /// <param name="data">数据集</param>
         /// <returns></returns>
         [NonAction]
-        public HttpResult<T> Success<T>(T data)
+        public IHttpActionResult Success<T>(T data)
         {
-            return new HttpResult<T>
+
+            var result = new HttpResult<T>
             {
                 code = HttpStateCode.Success,
                 data = data
             };
+            return Json(result);
         }
     }
 }

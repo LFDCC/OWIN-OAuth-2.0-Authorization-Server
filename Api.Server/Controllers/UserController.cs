@@ -1,10 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Api.Server.Model;
 using Auth.Dto;
 using Auth.Infrastructure.Extension;
-using Auth.Infrastructure.Ioc;
 using Auth.Service.Interface;
 
 namespace Api.Server.Controllers
@@ -28,7 +27,8 @@ namespace Api.Server.Controllers
         /// 获取用户
         /// </summary>
         /// <returns></returns>
-        public async Task<HttpResult<UserDto>> Get()
+        [ResponseType(typeof(HttpResult<UserDto>))]
+        public async Task<IHttpActionResult> Get()
         {
             var user = await userService.GetUserAsync(User.Identity.Name.To<int>());
             if (user != null)
@@ -47,7 +47,8 @@ namespace Api.Server.Controllers
         /// <param name="uid">用户ID</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<HttpResult<UserDto>> GetUser(int uid)
+        [ResponseType(typeof(HttpResult<UserDto>))]
+        public async Task<IHttpActionResult> GetUser(int uid)
         {
             if (uid != User.Identity.Name.To<int>())
             {
