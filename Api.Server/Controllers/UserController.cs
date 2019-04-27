@@ -30,7 +30,7 @@ namespace Api.Server.Controllers
         [ResponseType(typeof(HttpResult<UserDto>))]
         public async Task<IHttpActionResult> Get()
         {
-            var user = await userService.GetUserAsync(User.Identity.Name.To<int>());
+            var user = await userService.GetUserAsync(1);
             if (user != null)
             {
                 return Success(user);
